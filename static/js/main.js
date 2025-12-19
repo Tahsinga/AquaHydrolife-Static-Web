@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+function initMain() {
     // Slider Functionality
     let currentSlide = 0;
     const slideContainer = document.querySelector('.slides-container');
@@ -133,7 +133,36 @@ document.addEventListener('DOMContentLoaded', function() {
     window.nextSlide = nextSlide;
     window.prevSlide = prevSlide;
     window.goToSlide = goToSlide;
-});
+
+    // Service button handlers: navigate to the route in the button's data-url
+    document.querySelectorAll('.service-btn').forEach(btn => {
+        function handleButtonClick() {
+            const url = this.getAttribute('data-url');
+            if (url) window.location.href = url;
+        }
+
+        btn.addEventListener('click', handleButtonClick);
+
+        // Add touchstart for mobile devices
+        if ('ontouchstart' in window) {
+            btn.addEventListener('touchstart', handleButtonClick);
+        }
+
+        // keyboard accessibility: Enter or Space activates the button
+        btn.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMain);
+} else {
+    initMain();
+}
 
 // Restart entrance animations so they play on every page visit (including bfcache restores)
 function restartEntranceAnimations() {

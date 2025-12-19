@@ -93,7 +93,7 @@
                 <i class="fas fa-shield-alt"></i>
             </div> -->
             <div class="brand-text">
-                <span class="brand-name" style="font-size: 32px; font-weight: 900; color: #007bff;">TOPS</span>
+                <span class="brand-name" style="font-size: 32px; font-weight: 900; color: #007bff;"></span>
                 <!-- <span class="brand-tagline">Protecting What Matters</span> -->
             </div>
         </div>
@@ -109,7 +109,7 @@
         </nav>
 
         <!-- Search -->
-        <div class="search-box">
+        <div class="search-box" style="margin-left: -150px;">
             <i class="fas fa-search"></i>
             <input style="height: 28px;" type="search" placeholder="Search services..." />
         </div>
@@ -119,7 +119,7 @@
         <!-- Brand -->
         <div class="brand">
             <div class="brand-text">
-                <span class="brand-name" style="font-size: 40px; font-weight: 900; color: #007bff;">TOPS</span>
+                <span class="brand-name" style="font-size: 40px; font-weight: 900; color: #007bff;"></span>
             </div>
         </div>
 
@@ -191,9 +191,6 @@
 
     <section class="hero-banner desktop-hero" id="home">
         <div class="hero-slideshow">
-            <img src="{% static 'images/Hero-BannerImages/projects.jpg' %}" alt="Hero banner" class="hero-slide">
-            <img src="{% static 'images/Hero-BannerImages/imageTopBar4.jpg' %}" alt="Hero banner" class="hero-slide">
-            <img src="{% static 'images/Hero-BannerImages/imageTopBar3.jpg' %}" alt="Hero banner" class="hero-slide">
             <img src="{% static 'images/Hero-BannerImages/imageTopBar2.jpg' %}" alt="Hero banner" class="hero-slide">
             <img src="{% static 'images/Hero-BannerImages/imageTopBar1.jpg' %}" alt="Hero banner" class="hero-slide">
             <img src="{% static 'images/Hero-BannerImages/imageTopBar.jpg' %}" alt="Hero banner" class="hero-slide">
@@ -203,7 +200,7 @@
         <!-- Desktop Hero Content -->
         <div class="container desktop-container">
             <div class="hero-content">
-                <h1 class="hero-title">SecureVision Pro</h1>
+                <h1 class="hero-title">TOPS SYSTEMS</h1>
                 <p class="hero-subtitle" style="font-style: normal;">Professional camera installations, Starlink connectivity, and web development — all in one place.</p>
                 
                 <div class="hero-services">
@@ -234,9 +231,6 @@
 
     <section class="hero-banner mobile-hero" id="home" style="margin-top: -90px; height: 800px;">
         <div class="hero-slideshow">
-            <img src="{% static 'images/Hero-BannerImages/projects.jpg' %}" alt="Hero banner" class="hero-slide">
-            <img src="{% static 'images/Hero-BannerImages/imageTopBar4.jpg' %}" alt="Hero banner" class="hero-slide">
-            <img src="{% static 'images/Hero-BannerImages/imageTopBar3.jpg' %}" alt="Hero banner" class="hero-slide">
             <img src="{% static 'images/Hero-BannerImages/imageTopBar2.jpg' %}" alt="Hero banner" class="hero-slide">
             <img src="{% static 'images/Hero-BannerImages/imageTopBar1.jpg' %}" alt="Hero banner" class="hero-slide">
             <img src="{% static 'images/Hero-BannerImages/imageTopBar.jpg' %}" alt="Hero banner" class="hero-slide">
@@ -246,7 +240,7 @@
         <!-- Mobile Hero Content -->
         <div class="container mobile-container" style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
             <div class="hero-content">
-                <h1 class="hero-title">SecureVision Pro</h1>
+                <h1 class="hero-title">TOPS SYSTEMS</h1>
                 <p class="hero-subtitle" style="font-style: normal;">Professional camera installations, Starlink connectivity, and web development services.</p>
                 
                 <div class="hero-services">
@@ -304,22 +298,30 @@
                     <div class="service-glow"></div>
                     <h3>Access Control</h3>
                     <p>Advanced access control systems for secure entry and management.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Multi-factor entry options (card, PIN, biometric)</li>
+                            <li>Centralised user management and audit logs</li>
+                        </ul>
+                    </div>
+                    <button id="btn-access_control-desk" type="button" data-url="{% url 'access_control' %}" class="service-btn">Learn More <span>→</span></button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
                         <img src="{% static 'images/Black.jpg' %}" alt="CCTV">
                     </div>
                     <div class="service-glow"></div>
-                    <h3>CCTV (Closed-Circuit Television)</h3>
+                    <h3>CCTV System</h3>
                     <p>Professional CCTV installation and monitoring for comprehensive surveillance.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>HD & low-light cameras with remote viewing</li>
+                            <li>Options for local or cloud recording</li>
+                        </ul>
+                    </div>
+                    <button id="btn-cctv-desk" type="button" data-url="{% url 'cctv' %}" class="service-btn">Learn More <span>→</span></button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
@@ -328,10 +330,14 @@
                     <div class="service-glow"></div>
                     <h3>Electric Fence</h3>
                     <p>High-security electric fencing solutions for perimeter protection.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Tailored perimeter zoning with alarm integration</li>
+                            <li>Low-maintenance and solar-capable setups</li>
+                        </ul>
+                    </div>
+                    <button id="btn-electric_fence-desk" type="button" data-url="{% url 'electric_fence' %}" class="service-btn">Learn More <span>→</span></button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
@@ -340,10 +346,14 @@
                     <div class="service-glow"></div>
                     <h3>Gate Automation</h3>
                     <p>Automated gate systems for convenient and secure access control.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Safety sensors, remote control and scheduled operation</li>
+                            <li>Integration with access control and intercoms</li>
+                        </ul>
+                    </div>
+                    <button id="btn-gate_automation-desk" type="button" data-url="{% url 'gate_automation' %}" class="service-btn">Learn More <span>→</span></button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
@@ -352,10 +362,14 @@
                     <div class="service-glow"></div>
                     <h3>Mantrap</h3>
                     <p>Mantrap systems for enhanced security in high-risk areas.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Dual-door controlled vestibules with verification</li>
+                            <li>Audit trails and emergency override options</li>
+                        </ul>
+                    </div>
+                    <button id="btn-mantrap-desk" type="button" data-url="{% url 'mantrap' %}" class="service-btn">Learn More <span>→</span></button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
@@ -364,10 +378,14 @@
                     <div class="service-glow"></div>
                     <h3>Vehicle Tracking</h3>
                     <p>GPS vehicle tracking solutions for fleet management and security.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Real-time location, geo-fencing and route history</li>
+                            <li>Driver behaviour and maintenance alerts</li>
+                        </ul>
+                    </div>
+                    <button id="btn-vehicle_tracking-desk" type="button" data-url="{% url 'vehicle_tracking' %}" class="service-btn">Learn More <span>→</span></button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
@@ -376,10 +394,14 @@
                     <div class="service-glow"></div>
                     <h3>Video & Audio Intercom</h3>
                     <p>Advanced intercom systems with video and audio capabilities.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Two-way video/audio, mobile notifications and access release</li>
+                            <li>Scalable intercom networks for multi-entrance sites</li>
+                        </ul>
+                    </div>
+                    <button id="btn-video_audio_intercom-desk" type="button" data-url="{% url 'video_audio_intercom' %}" class="service-btn">Learn More <span>→</span></button>
+                    
                 </div>
             </div>
         </div>
@@ -402,22 +424,30 @@
                     <div class="service-glow"></div>
                     <h3>Access Control</h3>
                     <p>Advanced access control systems for secure entry.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Card, PIN and biometric options</li>
+                            <li>Centralised user management</li>
+                        </ul>
+                    </div>
+                    <button id="btn-access_control-mob" type="button" data-url="{% url 'access_control' %}" class="service-btn">Learn More</button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
                         <img src="{% static 'images/imageTopBar1.jpg' %}" alt="CCTV">
                     </div>
                     <div class="service-glow"></div>
-                    <h3>CCTV (Closed-Circuit Television)</h3>
+                    <h3>CCTV System</h3>
                     <p>Professional CCTV installation and monitoring.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>HD cameras, night vision and remote access</li>
+                            <li>Local or cloud recording options</li>
+                        </ul>
+                    </div>
+                    <button id="btn-cctv-mob" type="button" data-url="{% url 'cctv' %}" class="service-btn">Learn More</button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
@@ -426,10 +456,14 @@
                     <div class="service-glow"></div>
                     <h3>Electric Fence</h3>
                     <p>High-security electric fencing solutions.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Perimeter zoning and alarm integration</li>
+                            <li>Solar-capable, low-maintenance designs</li>
+                        </ul>
+                    </div>
+                    <button id="btn-electric_fence-mob" type="button" data-url="{% url 'electric_fence' %}" class="service-btn">Learn More</button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
@@ -438,10 +472,14 @@
                     <div class="service-glow"></div>
                     <h3>Gate Automation</h3>
                     <p>Automated gate systems for secure access.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Safety sensors and remote control</li>
+                            <li>Integration with access control systems</li>
+                        </ul>
+                    </div>
+                    <button id="btn-gate_automation-mob" type="button" data-url="{% url 'gate_automation' %}" class="service-btn">Learn More</button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
@@ -450,10 +488,14 @@
                     <div class="service-glow"></div>
                     <h3>Mantrap</h3>
                     <p>Mantrap systems for enhanced security.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Controlled vestibules with verification</li>
+                            <li>Audit logs and emergency override</li>
+                        </ul>
+                    </div>
+                    <button id="btn-mantrap-mob" type="button" data-url="{% url 'mantrap' %}" class="service-btn">Learn More</button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
@@ -462,10 +504,14 @@
                     <div class="service-glow"></div>
                     <h3>Vehicle Tracking</h3>
                     <p>GPS vehicle tracking solutions.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Real-time location and geo-fencing</li>
+                            <li>Route history and driver alerts</li>
+                        </ul>
+                    </div>
+                    <button id="btn-vehicle_tracking-mob" type="button" data-url="{% url 'vehicle_tracking' %}" class="service-btn">Learn More</button>
+                    
                 </div>
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
@@ -474,10 +520,14 @@
                     <div class="service-glow"></div>
                     <h3>Video & Audio Intercom</h3>
                     <p>Advanced intercom systems with video and audio.</p>
-                    <a href="#" class="service-link">
-                        Learn More
-                        <span>→</span>
-                    </a>
+                    <div class="service-details">
+                        <ul>
+                            <li>Two-way video/audio and mobile notifications</li>
+                            <li>Access release and scalable networks</li>
+                        </ul>
+                    </div>
+                    <button id="btn-video_audio_intercom-mob" type="button" data-url="{% url 'video_audio_intercom' %}" class="service-btn">Learn More</button>
+                    
                 </div>
             </div>
         </div>
@@ -630,7 +680,7 @@
                 <div class="about-text" style="width: 100%; max-width: none;">
                     <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--secondary); text-align: center;">🚀 Out-of-This-World Security & Connectivity Solutions</h3>
                     <p style="margin-bottom: 20px; color: var(--gray); font-size: 1.1rem; line-height: 1.7;">
-                        Welcome to the future of security and connectivity! At SecureVision Pro, we're not just installing cameras and setting up networks — we're crafting impenetrable fortresses of protection and launching your connectivity into the stratosphere. Our cutting-edge expertise transforms ordinary spaces into smart, secure environments that rival the most advanced command centers on Earth.
+                        Welcome to the future of security and connectivity! At TOPS SYSTEM, we're not just installing cameras and setting up networks — we're crafting impenetrable fortresses of protection and launching your connectivity into the stratosphere. Our cutting-edge expertise transforms ordinary spaces into smart, secure environments that rival the most advanced command centers on Earth.
                     </p>
                     
                     <div class="about-images-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
@@ -721,7 +771,7 @@
                 <div class="about-text" style="width: 100%; max-width: none;">
                     <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--secondary); text-align: center;">🚀 Out-of-This-World Security Solutions</h3>
                     <p style="margin-bottom: 20px; color: var(--gray); font-size: 1rem; line-height: 1.7;">
-                        At SecureVision Pro, we're not just installing cameras — we're crafting impenetrable fortresses of protection and launching your connectivity into the stratosphere.
+                        At TOPS SYSTEM, we're not just installing cameras — we're crafting impenetrable fortresses of protection and launching your connectivity into the stratosphere.
                     </p>
                     
                     <div class="about-images-row" style="display: grid; grid-template-columns: 1fr; gap: 15px; margin: 25px 0;">
@@ -847,7 +897,7 @@
         <div class="container desktop-container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3><i class="fas fa-shield-alt"></i> SecureVision Pro</h3>
+                    <h3><i class="fas fa-shield-alt"></i> TOPS SYSTEM</h3>
                     <p>Professional camera installations and Starlink network solutions for homes and businesses.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -894,14 +944,14 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 SecureVision Pro. All rights reserved. | Professional Camera & Starlink Installation Services</p>
+                <p>&copy; 2025 TOPS SYSTEM. All rights reserved. | Professional Camera & Starlink Installation Services</p>
             </div>
         </div>
 
         <div class="container mobile-container">
             <div class="footer-content" style="display: grid; grid-template-columns: 1fr; gap: 30px;">
                 <div class="footer-section" style="text-align: center;">
-                    <h3 style="font-size: 1.5rem;"><i class="fas fa-shield-alt"></i> SecureVision Pro</h3>
+                    <h3 style="font-size: 1.5rem;"><i class="fas fa-shield-alt"></i> TOPS SYSTEM</h3>
                     <p style="font-size: 0.9rem;">Professional camera installations and Starlink network solutions for homes and businesses.</p>
                     <div class="social-links" style="justify-content: center; margin-top: 15px;">
                         <a href="#" style="margin: 0 8px;"><i class="fab fa-facebook-f"></i></a>
@@ -948,7 +998,7 @@
             </div>
             
             <div class="copyright" style="text-align: center; font-size: 0.8rem; margin-top: 30px;">
-                <p>&copy; 2025 SecureVision Pro. All rights reserved.<br>Professional Camera & Starlink Installation Services</p>
+                <p>&copy; 2025 TOPS SYSTEM. All rights reserved.<br>Professional Camera & Starlink Installation Services</p>
             </div>
         </div>
     </footer>

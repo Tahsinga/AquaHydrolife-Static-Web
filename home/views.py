@@ -1,12 +1,14 @@
 from django.shortcuts import render
 import logging
+import os
+from django.http import HttpResponse, Http404
 
 logger = logging.getLogger(__name__)
 
 def home(request):
     logger.info("Homepage loaded by user")
     context = {
-        'title': 'SecureVision Pro | Camera & Starlink Installations',
+        'title': 'TOPS Systems - Camera Installation & Starlink Setup',
         'slides': [
             {
                 'image': 'https://images.unsplash.com/photo-1557821552-17105176677c?w=1200&h=600&fit=crop&q=80',
@@ -67,3 +69,48 @@ def contact(request):
 
 def starlink(request):
     return render(request, 'home/starlink.html', {'title': 'Starlink Services'})
+
+def access_control(request):
+    return render(request, 'home/access_control.html', {'title': 'Access Control Services'})
+
+def cctv(request):
+    return render(request, 'home/cctv.html', {'title': 'CCTV Services'})
+
+def electric_fence(request):
+    return render(request, 'home/electric_fence.html', {'title': 'Electric Fence Services'})
+
+def gate_automation(request):
+    return render(request, 'home/gate_automation.html', {'title': 'Gate Automation Services'})
+
+def mantrap(request):
+    return render(request, 'home/mantrap.html', {'title': 'Mantrap Services'})
+
+def vehicle_tracking(request):
+    return render(request, 'home/vehicle_tracking.html', {'title': 'Vehicle Tracking Services'})
+
+def video_audio_intercom(request):
+    return render(request, 'home/video_audio_intercom.html', {'title': 'Video & Audio Intercom Services'})
+
+
+def open_template(request, filename):
+    """Safely return the raw template source for files under templates/home/ as plain text.
+
+    This is intentionally simple and restricted: it rejects path separators and '..'.
+    """
+    templates_dir = os.path.join(os.path.dirname(__file__), 'templates', 'home')
+    # basic validation to prevent directory traversal
+    if any(part in filename for part in ('..', '/', '\\')):
+        raise Http404("Not found")
+
+    file_path = os.path.join(templates_dir, filename)
+    file_path = os.path.abspath(file_path)
+    if not file_path.startswith(os.path.abspath(templates_dir) + os.sep):
+        raise Http404("Not found")
+
+    if not os.path.exists(file_path):
+        raise Http404("Not found")
+
+    with open(file_path, 'r', encoding='utf-8') as fh:
+        content = fh.read()
+
+    return HttpResponse(content, content_type='text/plain')

@@ -42,9 +42,8 @@ body {
 }
 
 .container {
-    width: 100%;
-    max-width: none;
-    margin: 0;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 20px;
     background: transparent;
 }
@@ -424,7 +423,8 @@ body {
     box-shadow: var(--shadow-sm);
     position: absolute;
     bottom: 10px;
-    right: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 10;
 }
 
@@ -769,7 +769,7 @@ body {
 /* Grid */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 32px;
 }
 

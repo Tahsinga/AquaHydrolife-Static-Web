@@ -7,6 +7,7 @@ from django.contrib import messages
 from .forms import ContactForm
 from django.conf import settings
 from django.core.mail import send_mail
+from .models import ContactMessage, QuoteMessage
 
 logger = logging.getLogger(__name__)
 
@@ -85,6 +86,8 @@ def contact(request):
 
             try:
                 send_mail(subject, body, from_email, [recipient], fail_silently=False)
+                # Save to database
+                ContactMessage.objects.create(email=email, message=message_text)
                 messages.success(request, 'Message sent successfully!')
                 logger.info('Contact form sent by %s', email)
             except Exception as exc:
@@ -176,6 +179,14 @@ def request_quote(request):
     email_sent = False
     try:
         send_mail(subject, body, from_email, [recipient], fail_silently=False)
+        # Save to database
+        QuoteMessage.objects.create(
+            full_name=name,
+            email=email,
+            phone=phone,
+            service=service,
+            message=message
+        )
         email_sent = True
         logger.info('Quote email sent to %s', recipient)
     except Exception as exc:

@@ -7,7 +7,7 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from .forms import ContactForm
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from .models import ContactMessage, QuoteMessage
 
 logger = logging.getLogger(__name__)
@@ -71,28 +71,51 @@ def services(request):
 def about(request):
     return render(request, 'home/about.html', {'title': 'About Us'})
 
-def contact(request):
-    # contact page with a simple contact form that sends an email
+
+#############################################################################
+import os
+import django
+import datetime
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.conf import settings
+from django.core.mail import EmailMessage
+from .forms import ContactForm
+from .models import ContactMessage
+import logging
+
+logger = logging.getLogger(__name__)
+
+# Ensure Django is set up if running outside manage.py
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'camerainstallationweb.settings')
+django.setup()
+
+def request_quote(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            message_text = form.cleaned_data['message']
+            full_name = form.cleaned_data.get('full_name')
+            email = form.cleaned_data.get('email')
+            phone = form.cleaned_data.get('phone')
+            service = form.cleaned_data.get('service')
+            message_text = form.cleaned_data.get('message')
 
-            subject = 'New Contact Message'
+            # Email content
+            subject = f'New Quote Request from {full_name}'
             timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             body = (
-                f"NEW CONTACT MESSAGE RECEIVED\n"
+                f"NEW QUOTE REQUEST RECEIVED\n"
                 f"=============================\n\n"
                 f"CUSTOMER DETAILS:\n"
                 f"----------------\n"
-                f"Email Address: {email}\n\n"
+                f"Full Name: {full_name}\n"
+                f"Email Address: {email}\n"
+                f"Phone Number: {phone}\n"
+                f"Requested Service: {service}\n\n"
                 f"MESSAGE:\n"
                 f"--------\n"
                 f"{message_text}\n\n"
                 f"---\n"
-                f"This message was submitted via the TOPS SYSTEMS website contact form.\n"
-                f"Please respond to the customer's email: {email}\n"
                 f"Timestamp: {timestamp}"
             )
 
@@ -100,26 +123,38 @@ def contact(request):
             from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'munqitshwatashinga1@gmail.com')
 
             try:
-                result = send_mail(
-                    subject,
-                    body,
-                    from_email,
-                    [recipient],
-                    fail_silently=False
+                email_msg = EmailMessage(
+                    subject=subject,
+                    body=body,
+                    from_email=from_email,
+                    to=[recipient],
+                    reply_to=[email] if email else None
                 )
-                # Save to database
-                ContactMessage.objects.create(email=email, message=message_text)
-                messages.success(request, 'Message sent successfully!')
-                logger.info('Contact form sent by %s', email)
-            except Exception as exc:
-                logger.exception('Failed to send contact email: %s', exc)
-                messages.error(request, 'Failed to send message. Please try again later.')
+                email_msg.send(fail_silently=False)
+                print('✅ Email sent successfully')  # Terminal feedback
 
-            return redirect('contact')
+                # Save to database
+                ContactMessage.objects.create(
+                    full_name=full_name,
+                    email=email,
+                    phone=phone,
+                    service=service,
+                    message=message_text
+                )
+
+                messages.success(request, 'Your request has been sent successfully!')
+                logger.info('Quote request sent by %s', email)
+
+            except Exception as exc:
+                print('❌ Failed to send email:', str(exc))  # Terminal feedback
+                logger.exception('Failed to send quote email: %s', exc)
+                messages.error(request, 'Failed to send your request. Please try again later.')
+
+            return redirect('request_quote')
     else:
         form = ContactForm()
 
-    return render(request, 'home/contact.html', {'title': 'Contact Us', 'form': form})
+    return render(request, 'home/contact.html', {'title': 'Request a Quote', 'form': form})
 
 def starlink(request):
     return render(request, 'home/starlink.html', {'title': 'Starlink Services'})
@@ -170,7 +205,7 @@ def open_template(request, filename):
     return HttpResponse(content, content_type='text/plain')
 
 
-def request_quote(request):
+def contact(request):
     """Handle quote request form POST and send an email to test address."""
     if request.method != 'POST':
         return redirect('home')
@@ -220,13 +255,14 @@ def request_quote(request):
 
     email_sent = False
     try:
-        result = send_mail(
-            subject,
-            body,
-            from_email,
-            [recipient],
-            fail_silently=False
+        email_msg = EmailMessage(
+            subject=subject,
+            body=body,
+            from_email=from_email,
+            to=[recipient],
+            reply_to=[email]
         )
+        email_msg.send(fail_silently=False)
         # Save to database
         QuoteMessage.objects.create(
             full_name=name,

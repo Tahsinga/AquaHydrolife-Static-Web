@@ -1,30 +1,16 @@
-import smtplib
-import ssl
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import os
+import django
 
-# Test SMTP connection and send a test email
-try:
-    # Create message
-    msg = MIMEMultipart()
-    msg['From'] = 'munqitshwatashinga1@gmail.com'
-    msg['To'] = 'munqitshwatashinga1@gmail.com'
-    msg['Subject'] = 'SMTP Test Email'
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'camerainstallationweb.settings')
+django.setup()
 
-    body = 'This is a test email to verify SMTP is working.'
-    msg.attach(MIMEText(body, 'plain'))
+from django.core.mail import send_mail
 
-    # Connect to Gmail SMTP
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login('munqitshwatashinga1@gmail.com', 'qwrugcdidjupquhf')
+send_mail(
+    subject='Gmail Test Email',
+    message='This email was sent successfully using Gmail SMTP.',
+    from_email=None,
+    recipient_list=['munqitshwatashinga1@gmail.com'],
+)
 
-    # Send email
-    text = msg.as_string()
-    server.sendmail('munqitshwatashinga1@gmail.com', 'munqitshwatashinga1@gmail.com', text)
-    server.quit()
-
-    print('✅ Test email sent successfully! Check your Gmail inbox.')
-
-except Exception as e:
-    print('❌ SMTP test failed:', str(e))
+print('✅ Email sent successfully')

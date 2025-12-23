@@ -96,18 +96,7 @@
         </a>
     </div>
 
-    <div class="nav-bar desktop-nav-bar">
-        <!-- Brand -->
-        <div class="brand">
-            <!-- <div class="logo">
-                <i class="fas fa-shield-alt"></i>
-            </div> -->
-            <div class="brand-text">
-                <span class="brand-name" style="font-size: 32px; font-weight: 900; color: #007bff;"></span>
-                <!-- <span class="brand-tagline">Protecting What Matters</span> -->
-            </div>
-        </div>
-
+    <div class="nav-bar desktop-nav-bar" style="justify-content: center;">
         <!-- Navigation -->
         <nav class="nav-links">
             <a href="#home">Home</a>
@@ -117,22 +106,9 @@
             <a href="#contact">Contact</a>
             <a href="{% url 'starlink' %}">Starlink</a>
         </nav>
-
-        <!-- Search -->
-        <div class="search-box" style="margin-left: -150px;">
-            <i class="fas fa-search"></i>
-            <input style="height: 28px;" type="search" placeholder="Search services..." />
-        </div>
     </div>
 
     <div class="nav-bar mobile-nav-bar">
-        <!-- Brand -->
-        <div class="brand">
-            <div class="brand-text">
-                <span class="brand-name" style="font-size: 40px; font-weight: 900; color: #007bff;"></span>
-            </div>
-        </div>
-
         <!-- Navigation - Simplified for mobile -->
         <nav class="nav-links" style="flex-wrap: wrap; gap: 10px;">
             <a href="#services" style="padding: 6px 10px; font-size: 0.9rem;">Services</a>
@@ -140,12 +116,6 @@
             <a href="#contact" style="padding: 6px 10px; font-size: 0.9rem;">Contact</a>
             <a href="{% url 'starlink' %}" style="padding: 6px 10px; font-size: 0.9rem;">Starlink</a>
         </nav>
-
-        <!-- Search - Smaller for mobile -->
-        <div class="search-box" style="margin-bottom: 20px;">
-            <i class="fas fa-search"></i>
-            <input style="height: 34px; width: 100%; max-width: 150px; align-items: center;" type="search" placeholder="Search..." />
-        </div>
     </div>
 
     <style>

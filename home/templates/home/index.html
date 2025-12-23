@@ -197,6 +197,7 @@
         }
     </style>
 
+    <main>
     <section class="hero-banner desktop-hero" id="home">
         <div class="hero-banner-overlay"></div>
         
@@ -281,7 +282,7 @@
             <div class="services-grid">
                 <div class="service-card" style="border-radius: 10px;">
                     <div class="service-image">
-                        <img src="{% static 'images/access_control/AccessControl5.jpg' %}" alt="Access Control">
+                        <img src="{% static 'images/access_control/AccessControl5.jpg' %}" alt="Access Control" loading="lazy">
                     </div>
                     <div class="service-glow"></div>
                     <h3>Access Control</h3>
@@ -815,16 +816,20 @@
             <form class="contact-form" action="{% url 'request_quote' %}" method="post" style="background-color: #333; color: white;">
                 {% csrf_token %}
                 <div class="form-group">
-                    <input name="full_name" type="text" placeholder="Full Name" required>
+                    <label for="full_name_desk" style="display: block; margin-bottom: 5px;">Full Name</label>
+                    <input id="full_name_desk" name="full_name" type="text" placeholder="Full Name" required>
                 </div>
                 <div class="form-group">
-                    <input name="email" type="email" placeholder="Email Address" required>
+                    <label for="email_desk" style="display: block; margin-bottom: 5px;">Email Address</label>
+                    <input id="email_desk" name="email" type="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-group">
-                    <input name="phone" type="tel" placeholder="Phone Number">
+                    <label for="phone_desk" style="display: block; margin-bottom: 5px;">Phone Number</label>
+                    <input id="phone_desk" name="phone" type="tel" placeholder="Phone Number">
                 </div>
                 <div class="form-group">
-                    <select name="service">
+                    <label for="service_desk" style="display: block; margin-bottom: 5px;">Select Service</label>
+                    <select id="service_desk" name="service">
                         <option value="">Select Service</option>
                         <option value="camera">Camera Installation</option>
                         <option value="starlink">Starlink Setup</option>
@@ -833,7 +838,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" placeholder="Describe your project needs..." rows="5" required></textarea>
+                    <label for="message_desk" style="display: block; margin-bottom: 5px;">Message</label>
+                    <textarea id="message_desk" name="message" placeholder="Describe your project needs..." rows="5" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%">Request Free Quote</button>
             </form>
@@ -865,7 +871,8 @@
                         height="400" 
                         style="border:0; border-radius: 10px; max-width: 100%;" 
                         allowfullscreen="" 
-                        loading="lazy">
+                        loading="lazy"
+                        title="Our Location Map">
                     </iframe>
                 </div>
                 <p style="color: white; margin-top: 15px;">
@@ -1061,6 +1068,7 @@
         </div>
     </footer>
 
+    </main>
     <script src="{% static 'js/main.js' %}" defer></script>
 </body>
 </html>

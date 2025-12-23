@@ -152,6 +152,15 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Security settings
+SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_SSL_REDIRECT = True if not DEBUG else False
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+
 # Logging configuration - make level configurable via environment so Render shows logs
 LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO').upper()
 

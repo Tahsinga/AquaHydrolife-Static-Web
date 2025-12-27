@@ -61,7 +61,22 @@ function initMain() {
         updateSlider();
     }
 
-    // Smooth scroll for navigation links - REMOVED
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (!targetId || targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 
     // Form submission: only intercept if form has no action (keep client-side simulation for local forms)
     document.querySelectorAll('.contact-form').forEach(form => {

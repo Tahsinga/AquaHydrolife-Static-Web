@@ -118,6 +118,7 @@
             <a href="#">Contact</a>
             <a href="#">Projects</a>
         </nav>
+        <div id="business-status" style="margin-left: 20px; font-weight: 600; color: white;"></div>
     </div>
 
     <div class="nav-bar mobile-nav-bar">
@@ -1056,5 +1057,22 @@
 
     </main>
     <script src="{% static 'js/main.js' %}" defer></script>
+    <script>
+        function updateBusinessStatus() {
+            const now = new Date();
+            const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+            const hour = now.getHours();
+            const isWeekday = day >= 1 && day <= 5;
+            const isOpenHours = hour >= 8 && hour < 18; // 8 AM to 6 PM
+            const statusElement = document.getElementById('business-status');
+            if (isWeekday && isOpenHours) {
+                statusElement.innerHTML = '<i class="fas fa-circle" style="color: #00ff00;"></i> Open';
+            } else {
+                statusElement.innerHTML = '<i class="fas fa-circle" style="color: #ff0000;"></i> Closed';
+            }
+        }
+        updateBusinessStatus();
+        setInterval(updateBusinessStatus, 60000); // Update every minute
+    </script>
 </body>
 </html>

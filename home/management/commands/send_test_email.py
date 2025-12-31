@@ -19,7 +19,7 @@ class Command(BaseCommand):
             self.stderr.write('No recipient configured. Set TEST_EMAIL_RECIPIENT env var or pass --recipient.')
             return
 
-        subject = 'Render: Test Email from TOPS SYSTEMS'
+        subject = 'Render: Test Email from Aqua HydroLife'
         body = 'This is a test email sent to verify SMTP configuration on Render.'
         # Use configured default sender. Do not fall back to a generic no-reply address
         # because external SMTP providers (e.g. Gmail) require the FROM to be a valid

@@ -35,7 +35,7 @@ env_allowed_hosts = os.environ.get('ALLOWED_HOSTS')
 if env_allowed_hosts:
     ALLOWED_HOSTS = [h.strip() for h in env_allowed_hosts.split(',') if h.strip()]
 else:
-    ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'aquahydrolife.onrender.com']
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'aquahydrolife.onrender.com','192.168.111.5']
 
 # Emit a startup message to help debugging deployed host mismatches
 print(f'Effective ALLOWED_HOSTS: {ALLOWED_HOSTS}')

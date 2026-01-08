@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aquahydrolife.onrender.com/sitemap.xml
